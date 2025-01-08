@@ -85,6 +85,7 @@ namespace UnitTests
             settings.SetString(SessionSettings.START_TIME, "12:00:00");
             settings.SetString(SessionSettings.END_TIME, "12:00:00");
             settings.SetString(SessionSettings.HEARTBTINT, "300");
+            settings.SetString(SessionSettings.ENCODING, "windows-1251");
             return settings;
         }
 
@@ -517,6 +518,13 @@ namespace UnitTests
 
             // Check that log directory default setting has been effective
             Assert.That(System.IO.Directory.GetFiles(_logPath, QuickFix.Values.BeginString_FIX42 + "*.log").Length, Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void TestEncodingSettings(){
+
+            Assert.That(CharEncoding.DefaultEncoding, Is.EqualTo(System.Text.Encoding.GetEncoding("windows-1251")));
+
         }
     }
 }
